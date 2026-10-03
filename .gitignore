@@ -1,0 +1,21 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables / secrets
+.env
+*.env
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+
+# ChromaDB local data
+vector_db/chroma_data/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
