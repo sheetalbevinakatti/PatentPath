@@ -1,288 +1,358 @@
-PatentPath
+# PatentPath
+### Invention-to-Patent Traceability and Prior-Art Analysis System
+
+PatentPath is a **DBMS Level 3 project** designed to manage the journey of an invention from inventor registration and technology classification to patent application tracking and patent record management.
+
+The system integrates a relational **MySQL database** with **ChromaDB-based semantic search** to support prior-art analysis. A FastAPI backend connects the database and vector-search functionality to a Next.js web interface.
+
+---
+
+## Objectives
+
+- Maintain structured information about inventions and inventors.
+- Track technology categories associated with inventions.
+- Manage patent applications, status history, and patent records.
+- Store and analyze prior-art information.
+- Perform semantic prior-art retrieval using ChromaDB.
+- Demonstrate advanced database concepts beyond basic CRUD operations.
+- Provide a functional web interface for interacting with the system.
+
+---
+
+## Technology Stack
+
+| Component | Technology |
+|---|---|
+| Frontend | Next.js, TypeScript |
+| Backend | FastAPI, Python |
+| Relational Database | MySQL |
+| Vector Database | ChromaDB |
+| API Communication | REST |
+| Version Control | Git and GitHub |
+
+---
+
+## Project Structure
 
-Invention-to-Patent Traceability and Prior-Art Analysis System
+```text
+PatentPath/
+│
+├── backend/
+│   ├── app.py
+│   └── .env
+│
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── ...
+│
+├── vector_db/
+│   └── chroma_data/
+│
+├── .gitignore
+├── PatentPath.sql
+└── README.md
+```
 
-PatentPath is a DBMS Level 3 project designed to manage the journey of an invention from inventor and technology classification through patent application and patent records.
+> **Note:** The `.env` file contains local database configuration and is excluded from GitHub using `.gitignore`.
 
-The system combines a relational MySQL database with ChromaDB-based semantic search to support prior-art analysis. A FastAPI backend connects the database and vector-search functionality to a Next.js web interface.
+---
 
-Objectives
+## Database Design
 
-Maintain structured information about inventions and inventors.
+The MySQL database is named **`PatentPath`**.
 
-Track technology categories associated with inventions.
+### Main Tables
 
-Manage patent applications, status history, and patent records.
+| Table | Description |
+|---|---|
+| `INVENTOR` | Stores inventor information. |
+| `TECHNOLOGY_CATEGORY` | Maintains technology classifications. |
+| `INVENTION` | Stores invention details. |
+| `INVENTION_INVENTOR` | Establishes the relationship between inventions and inventors. |
+| `PRIOR_ART` | Stores prior-art documents and related information. |
+| `PRIOR_ART_ANALYSIS` | Maintains prior-art analysis records. |
+| `PATENT_APPLICATION` | Tracks patent applications. |
+| `STATUS_HISTORY` | Maintains application status changes. |
+| `PATENT` | Stores patent records. |
+| `PATENT_CITATION` | Maintains patent citation relationships. |
 
-Store and analyze prior-art information.
+### Additional Database Objects
 
-Perform semantic prior-art retrieval using ChromaDB.
+- **SQL View:** `invention_technology_view`
+- **Stored Procedure:** `GetInventionDetails`
+- **Trigger:** `trg_application_status_update`
+- **Indexing:** Index on the `INVENTION` table
 
-Demonstrate advanced database concepts beyond basic CRUD.
+---
 
-Provide a functional web interface for interacting with the system.
+## Database Concepts Demonstrated
 
-Technology Stack
+PatentPath demonstrates the following DBMS concepts:
 
-ComponentTechnologyFrontendNext.js, TypeScriptBackendFastAPI, PythonRelational DatabaseMySQLVector DatabaseChromaDBAPI CommunicationRESTVersion ControlGit and GitHub
+- Database and table creation
+- Primary Keys and Foreign Keys
+- `NOT NULL` constraints
+- `INSERT`, `SELECT`, `UPDATE`, and `DELETE`
+- SQL Joins
+- `GROUP BY`, `HAVING`, and `ORDER BY`
+- Aggregate functions
+- Subqueries
+- Indexing
+- SQL Views
+- Stored Procedures
+- Triggers
+- Transactions and Rollback
+- Vector-based Semantic Search
 
-Project Structure
+---
 
-PatentPath/ │ ├── backend/ │ ├── app.py │ └── .env │ ├── frontend/ │ ├── src/ │ ├── package.json │ └── ... │ ├── vector_db/ │ └── chroma_data/ │ ├── .gitignore ├── PatentPath.sql └── README.md 
+## Installation and Setup
 
-Note: The .env file contains local database configuration and is excluded from GitHub using .gitignore.
+### Prerequisites
 
-Database
+Ensure the following software is installed:
 
-The MySQL database is named PatentPath.
+- Python
+- Node.js and npm
+- MySQL Server
+- MySQL Workbench
+- Git
 
-The relational database contains the following main tables:
+---
 
-INVENTOR
+### 1. Clone the Repository
 
-TECHNOLOGY_CATEGORY
+```bash
+git clone https://github.com/shrunguuu/PatentPath.git
+cd PatentPath
+```
 
-INVENTION
+### 2. Database Setup
 
-INVENTION_INVENTOR
+The complete SQL implementation is provided in `PatentPath.sql`.
 
-PRIOR_ART
+1. Make sure MySQL Server is running.
+2. Open MySQL Workbench.
+3. Execute the `PatentPath.sql` script.
 
-PRIOR_ART_ANALYSIS
+Alternatively, use the MySQL command-line client:
 
-PATENT_APPLICATION
+```sql
+SOURCE PatentPath.sql;
+```
 
-STATUS_HISTORY
+Verify the database and tables:
 
-PATENT
+```sql
+USE PatentPath;
+SHOW TABLES;
+```
 
-PATENT_CITATION
+### 3. Backend Setup
 
-The project also includes:
+From the project root directory:
 
-SQL View: invention_technology_view
+```bash
+cd PatentPath
+```
 
-Stored Procedure: GetInventionDetails
+Create a Python virtual environment:
 
-Trigger: trg_application_status_update
+```bash
+python -m venv venv
+```
 
-Indexing: Index on the INVENTION table
+Activate the environment.
 
-Database Features Demonstrated
+**Windows:**
 
-The project demonstrates the following database concepts:
+```bash
+venv\Scripts\activate
+```
 
-CREATE DATABASE
+**Linux/macOS:**
 
-CREATE TABLE
-
-Primary Keys
-
-Foreign Keys
-
-NOT NULL constraints
-
-INSERT
-
-SELECT
-
-UPDATE
-
-DELETE
-
-JOIN
-
-GROUP BY
-
-HAVING
-
-ORDER BY
-
-Aggregate functions
-
-Subqueries
-
-Indexes
-
-SQL Views
-
-Stored Procedures
-
-Triggers
-
-Transactions and Rollback
-
-Vector Semantic Search
-
-SQL Database Setup
-
-The complete SQL implementation is provided in PatentPath.sql.
-
-Make sure MySQL Server is running.
-
-Open MySQL Workbench and execute the SQL script.
-
-Alternatively, from the MySQL command-line client:
-
-SOURCE PatentPath.sql; 
-
-After execution, verify the database and tables:
-
-USE PatentPath; SHOW TABLES; 
-
-Backend Setup
-
-Open a terminal in the project root directory:
-
-cd PatentPath 
-
-Create and activate a Python virtual environment if required.
+```bash
+source venv/bin/activate
+```
 
 Install the required Python packages used by the backend.
 
+Configure the local `.env` file with the database credentials:
+
+```env
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=<your_mysql_username>
+DB_PASSWORD=<your_mysql_password>
+DB_NAME=PatentPath
+```
+
 Start the FastAPI backend:
 
-uvicorn backend.app:app --reload 
+```bash
+uvicorn backend.app:app --reload
+```
 
 The backend runs at:
 
-http://127.0.0.1:8000
+**http://127.0.0.1:8000**
 
-FastAPI documentation is available at:
+FastAPI interactive documentation:
 
-http://127.0.0.1:8000/docs
+**http://127.0.0.1:8000/docs**
 
-Backend Environment Variables
-
-The backend uses environment variables for database configuration.
-
-The local .env file contains configuration such as:
-
-DB_HOST=localhost DB_PORT=3306 DB_USER=<your_mysql_username> DB_PASSWORD=<your_mysql_password> DB_NAME=PatentPath 
-
-Actual credentials must remain local and must not be committed to GitHub.
-
-Frontend Setup
+### 4. Frontend Setup
 
 Open another terminal and navigate to the frontend directory:
 
-cd PatentPath/frontend 
+```bash
+cd PatentPath/frontend
+```
 
-Install the frontend dependencies:
+Install dependencies:
 
-npm install 
+```bash
+npm install
+```
 
 Start the Next.js development server:
 
-npm run dev 
+```bash
+npm run dev
+```
 
 The frontend is available at:
 
-http://localhost:3000
+**http://localhost:3000**
 
-Running the Application
+---
 
-Run the components in the following order.
+## Running the Application
 
-1. MySQL
+Run the components in the following order:
 
-Make sure the MySQL server is running and the PatentPath database has been created.
+| Step | Component | Action |
+|---|---|---|
+| 1 | MySQL | Start MySQL Server and ensure the `PatentPath` database exists. |
+| 2 | FastAPI | Start the backend using Uvicorn. |
+| 3 | Next.js | Start the frontend using npm. |
 
-2. FastAPI Backend
+Once all components are running, open:
 
-From the project root:
+**http://localhost:3000**
 
-uvicorn backend.app:app --reload 
+---
 
-3. Next.js Frontend
+## Prior-Art Semantic Search
 
-From the frontend directory:
-
-npm run dev 
-
-Then open:
-
-http://localhost:3000
-
-Prior-Art Semantic Search
-
-PatentPath uses ChromaDB for semantic prior-art retrieval.
+PatentPath uses **ChromaDB** for semantic prior-art retrieval.
 
 The vector collection is named:
 
+```text
 prior_art
+```
 
-The stored prior-art documents contain information such as:
+### Stored Prior-Art Information
 
-Title
+The stored documents contain information such as:
 
-Document type
+- Title
+- Document type
+- Source
+- Abstract or content metadata
 
-Source
+Users can submit a natural-language description of an invention through the application.
 
-Abstract or content metadata
+### Example Query
 
-A natural-language invention description can be submitted through the application.
-
-Example Query
-
-A deep learning system that analyzes medical images and predicts diseases automatically. 
+```text
+A deep learning system that analyzes medical images
+and predicts diseases automatically.
+```
 
 The backend sends the query to the ChromaDB collection and retrieves relevant prior-art documents based on vector distance.
 
-The retrieved results are displayed through the web interface.
+The retrieved results are then displayed through the web interface.
 
-API Endpoints
+---
 
-Health Check
+## API Endpoints
 
-GET /health 
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Checks backend health. |
+| `GET` | `/inventions` | Retrieves invention records. |
+| `POST` | `/prior-art/search` | Performs semantic prior-art search. |
 
-Retrieve Inventions
+---
 
-GET /inventions 
+## Application Workflow
 
-Search Prior Art
+```text
+                 User
+                   |
+                   v
+           Next.js Frontend
+                   |
+                   v
+             FastAPI Backend
+                   |
+           +-------+-------+
+           |               |
+           v               v
+        MySQL           ChromaDB
+           |               |
+           |               v
+           |       Semantic Prior-Art
+           |          Retrieval
+           |               |
+           +-------+-------+
+                   |
+                   v
+           Results to Frontend
+```
 
-POST /prior-art/search 
+---
 
-Application Workflow
-
-User │ ▼ Next.js Frontend │ ▼ FastAPI Backend │ ├──────────────► MySQL │ └──────────────► ChromaDB │ ▼ Semantic Prior-Art Retrieval 
-
-Version Control
+## Version Control
 
 The project is maintained using Git and GitHub.
 
-Repository:
-https://github.com/shrunguuu
+**GitHub Repository:**  
+[PatentPath Repository](https://github.com/shrunguuu/PatentPath)
 
-The project uses .gitignore to exclude:
+The `.gitignore` file excludes:
 
-Environment files
+- Environment files
+- Python virtual environments
+- Python cache files
+- Node.js dependencies
+- Next.js build files
+- Local ChromaDB data
+- IDE and operating-system files
 
-Python virtual environments
+> **Security Note:** Actual database credentials must remain local and must never be committed to GitHub.
 
-Python cache files
+---
 
-Node.js dependencies
+## Team
 
-Next.js build files
-
-Local ChromaDB data
-
-IDE and operating-system files
-
-Team
-
-Team Members
-
-Sheetal Bevinakatti
-
-Shrungashree KR
+| Team Member |
+|---|
+| Sheetal Bevinakatti |
+| Shrungashree KR |
 
 Both members contributed to database and application development activities.
 
-Project Status
+---
+
+## Project Status
 
 PatentPath includes the implemented relational database, vector-search component, FastAPI backend, and Next.js frontend for the DBMS Level 3 project.
+
+---
+
+**PatentPath — Bridging Invention Management and Intelligent Prior-Art Discovery.**
