@@ -13,7 +13,7 @@ from pydantic import BaseModel
 # Load environment variables
 # --------------------------------------------------
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 
 # --------------------------------------------------
