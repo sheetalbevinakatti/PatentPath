@@ -110,6 +110,12 @@ PatentPath/
 
 
 
+
+
+
+
+
+
 Database
 
 
@@ -148,27 +154,29 @@ The project also includes:
 
 
 
-SQL view: invention\_technology\_view
+SQL View: invention\_technology\_view
 
-Stored procedure: GetInventionDetails
+Stored Procedure: GetInventionDetails
 
 Trigger: trg\_application\_status\_update
 
 Indexing on the INVENTION table
 
-
-
 Database Features Demonstrated
 
 
 
-The project demonstrates:
+The project demonstrates the following database concepts:
 
 
 
-CREATE DATABASE and CREATE TABLE
+CREATE DATABASE
 
-Primary and foreign keys
+CREATE TABLE
+
+Primary Keys
+
+Foreign Keys
 
 NOT NULL constraints
 
@@ -194,21 +202,45 @@ Subqueries
 
 Indexes
 
-SQL views
+SQL Views
 
-Stored procedures
+Stored Procedures
 
 Triggers
 
-Transactions and rollback
+Transactions and Rollback
 
-Vector semantic search
+Vector Semantic Search
+
+SQL Database Setup
 
 
 
-Backend Setup :
+Make sure MySQL Server is running.
 
-Open a terminal in the project directory: cd PatentPath
+
+
+Open MySQL Workbench or the MySQL command-line client and execute the provided SQL script:
+
+
+
+SOURCE PatentPath.sql;
+
+
+
+The script creates the PatentPath database, tables, relationships, indexes, view, stored procedure, and trigger.
+
+
+
+Backend Setup
+
+
+
+Open a terminal in the project root directory:
+
+
+
+cd PatentPath
 
 
 
@@ -220,15 +252,53 @@ Install the required Python packages used by the backend.
 
 
 
-Start the FastAPI backend: uvicorn backend.app:app --reload
+Start the FastAPI backend:
 
 
 
-The backend runs at: http://127.0.0.1:8000
+uvicorn backend.app:app --reload
 
 
 
-FastAPI documentation is available at: http://127.0.0.1:8000/docs
+The backend runs at:
+
+
+
+http://127.0.0.1:8000
+
+
+
+FastAPI documentation is available at:
+
+
+
+http://127.0.0.1:8000/docs
+
+Backend Environment Variables
+
+
+
+Database configuration is stored in the local .env file.
+
+
+
+Example:
+
+
+
+DB\_HOST=localhost
+
+DB\_PORT=3306
+
+DB\_USER=<your\_mysql\_username>
+
+DB\_PASSWORD=<your\_mysql\_password>
+
+DB\_NAME=PatentPath
+
+
+
+Actual credentials are not stored in GitHub.
 
 
 
@@ -236,21 +306,35 @@ Frontend Setup
 
 
 
-Open another terminal and navigate to the frontend directory: cd PatentPath/frontend
+Open another terminal and navigate to the frontend directory:
 
 
 
-Install the frontend dependencies: npm install
+cd PatentPath/frontend
 
 
 
-Start the Next.js development server: npm run dev
+Install the frontend dependencies:
 
 
 
-The frontend is available at: http://localhost:3000
+npm install
 
 
+
+Start the Next.js development server:
+
+
+
+npm run dev
+
+
+
+The frontend is available at:
+
+
+
+http://localhost:3000
 
 Running the Application
 
@@ -296,8 +380,6 @@ Then open:
 
 http://localhost:3000
 
-
-
 Prior-Art Semantic Search
 
 
@@ -332,9 +414,7 @@ A natural-language invention description can be submitted through the applicatio
 
 
 
-Example query:
-
-
+Example Query
 
 A deep learning system that analyzes medical images and predicts diseases automatically.
 
@@ -366,25 +446,25 @@ Application Workflow
 
 User
 
-&#x20; │
+&#x20;│
 
-&#x20; ▼
+&#x20;▼
 
 Next.js Frontend
 
-&#x20; │
+&#x20;│
 
-&#x20; ▼
+&#x20;▼
 
 FastAPI Backend
 
-&#x20; │
+&#x20;│
 
-&#x20; ├──────────────► MySQL
+&#x20;├──────────────► MySQL
 
-&#x20; │
+&#x20;│
 
-&#x20; └──────────────► ChromaDB
+&#x20;└──────────────► ChromaDB
 
 &#x20;                      │
 
