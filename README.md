@@ -17,6 +17,7 @@ Technology Stack
 ComponentTechnologyFrontendNext.js, TypeScriptBackendFastAPI, PythonRelational DatabaseMySQLVector DatabaseChromaDBAPI CommunicationRESTVersion ControlGit and GitHub
 
 Project Structure
+
 PatentPath/ │ ├── backend/ │ ├── app.py │ └── .env │ ├── frontend/ │ ├── src/ │ ├── package.json │ └── ... │ ├── vector_db/ │ └── chroma_data/ │ ├── .gitignore ├── PatentPath.sql └── README.md 
 Note: The .env file contains local database configuration and is excluded from GitHub using .gitignore.
 
