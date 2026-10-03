@@ -14,6 +14,7 @@ Demonstrate advanced database concepts beyond basic CRUD.
 Provide a functional web interface for interacting with the system.
 
 Technology Stack
+
 ComponentTechnologyFrontendNext.js, TypeScriptBackendFastAPI, PythonRelational DatabaseMySQLVector DatabaseChromaDBAPI CommunicationRESTVersion ControlGit and GitHub
 
 Project Structure
@@ -22,6 +23,7 @@ PatentPath/ │ ├── backend/ │ ├── app.py │ └── .env │ �
 Note: The .env file contains local database configuration and is excluded from GitHub using .gitignore.
 
 Database
+
 The MySQL database is named PatentPath.
 The relational database contains the following main tables:
 INVENTOR
@@ -36,6 +38,7 @@ PATENT
 PATENT_CITATION
 
 The project also includes:
+
 SQL View: invention_technology_view
 Stored Procedure: GetInventionDetails
 Trigger: trg_application_status_update
@@ -59,6 +62,7 @@ ORDER BY
 Aggregate functions
 
 Subqueries
+
 Indexes
 SQL Views
 Stored Procedures
